@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infra.Interface
+namespace Core.Interface
 {
-    public interface IParticipanteRepository 
+    public interface IChurrascoRepository : IBaseRepository<Churrasco>
     {
-        
+        Task<IReadOnlyList<Churrasco>> ChurrascosAgendados();
     }
 }

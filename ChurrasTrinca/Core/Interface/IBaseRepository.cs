@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infra.Interface
+namespace Core.Interface
 {
     public interface IBaseRepository<T> where T : BaseEntity
     {
         Task<T> GetById(Guid id);
         Task<T> Create(T entity);
         Task<bool> Delete(Guid id);
-
+        Task<IReadOnlyList<T>> All();
     }
 }

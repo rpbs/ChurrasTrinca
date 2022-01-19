@@ -1,9 +1,8 @@
-﻿using Core.Model;
+﻿using AutoMapper;
+using Core.Entities;
+using Core.Interface;
+using Core.Model;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -12,9 +11,23 @@ namespace Core.Commands.Handlers
     public class ChurrascoCommandHandler : 
         IRequestHandler<ChurrascoCommand, ChurrascoResponse>
     {
-        public Task<ChurrascoResponse> Handle(ChurrascoCommand request, CancellationToken cancellationToken)
+
+        private readonly IMapper _mapper;
+        private readonly IChurrascoRepository _churrascoRepository;
+
+        public ChurrascoCommandHandler(IMapper mapper, IChurrascoRepository churrascoRepository)
         {
-            throw new NotImplementedException();
+            _mapper = mapper;
+            _churrascoRepository = churrascoRepository;
+        }
+
+        public async Task<ChurrascoResponse> Handle(ChurrascoCommand request, CancellationToken cancellationToken)
+        {
+            var novoChurrasco = _mapper.Map<Churrasco>(request.ChurrascoDTO);
+            novoChurrasco = await _churrascoRepository.Create(novoChurrasco);
+            var resposta = _mapper.Map<ChurrascoResponse>(novoChurrasco);
+
+            return resposta;
         }
     }
 }

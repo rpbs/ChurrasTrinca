@@ -1,7 +1,10 @@
 ﻿using Core.Entities;
-using Infra.Interface;
-using System;
+using Core.Interface;
+using System.Linq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Infra.Repositories
 {
@@ -13,6 +16,11 @@ namespace Infra.Repositories
         public BaseRepository(ChurrasDbContext dbContext)
         {
             _dbContext = dbContext;
+        }
+
+        public async Task<IReadOnlyList<T>> All()
+        {
+            return await _dbContext.Set<T>().ToListAsync();
         }
 
         public async Task<T> Create(T entity)
