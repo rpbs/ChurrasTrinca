@@ -11,5 +11,6 @@ namespace Infra.Interface
     public interface IChurrascoRepository : IBaseRepository<Churrasco>
     {
         Task<Churrasco> CriarChurrasco(ChurrascoDTO churrascoDTO);
+        Task<List<Participante>> VerParticipantes(Guid churrascoId);
     }
 }
