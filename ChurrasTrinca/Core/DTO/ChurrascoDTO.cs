@@ -11,6 +11,8 @@ namespace Core.DTO
         public string Descricao { get; set; }
         public string Observacao { get; set; }
         public DateTime Data { get; set; }
+        public decimal ValorComBebiba { get; set; }
+        public decimal ValorSemBebiba { get; set; }
 
     }
 }

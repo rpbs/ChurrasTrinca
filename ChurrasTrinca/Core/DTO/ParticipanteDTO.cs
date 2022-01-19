@@ -8,5 +8,7 @@ namespace Core.DTO
 {
     public class ParticipanteDTO
     {
+        public string Nome { get; set; }
+        public decimal Contribuicao { get; set; }
     }
 }
