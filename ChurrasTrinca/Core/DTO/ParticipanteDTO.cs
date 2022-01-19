@@ -10,5 +10,6 @@ namespace Core.DTO
     {
         public string Nome { get; set; }
         public decimal Contribuicao { get; set; }
+        public Guid ChurrascoId { get; set; }
     }
 }

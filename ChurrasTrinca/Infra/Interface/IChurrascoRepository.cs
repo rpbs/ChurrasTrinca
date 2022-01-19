@@ -12,5 +12,6 @@ namespace Infra.Interface
     {
         Task<Churrasco> CriarChurrasco(ChurrascoDTO churrascoDTO);
         Task<List<Participante>> VerParticipantes(Guid churrascoId);
+        Task<Participante> AdicionarParticipante(ParticipanteDTO participanteDTO);
     }
 }

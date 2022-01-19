@@ -10,6 +10,6 @@ namespace Infra.Interface
 {
     public interface IParticipanteRepository 
     {
-        Task<Participante> AdicionarParticipante(ParticipanteDTO participanteDTO);
+        
     }
 }

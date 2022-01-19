@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 
 namespace Core.Queries
 {
-    public class ChurrascoQuery : IRequest<IReadOnlyList<ChurrascoResponse>>
+    public class ChurrascoByIdQuery : IRequest<ChurrascoResponse>
     {
-        public ChurrascoQuery()
+        public ChurrascoByIdQuery(Guid id)
         {
-
+            Id = id;
         }
+
+        public Guid Id { get; }
     }
 }
