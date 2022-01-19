@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.DTO
+namespace Core.Model
 {
-    public class ParticipanteDTO
+    public class ParticipanteResponse
     {
         public string Nome { get; set; }
         public decimal Contribuicao { get; set; }
-        public Guid ChurrascoId { get; set; }
 
     }
 }

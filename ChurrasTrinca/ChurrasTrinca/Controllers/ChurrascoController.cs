@@ -18,7 +18,7 @@ namespace ChurrasTrinca.Controllers
     {
         private readonly IMediator _mediator;
 
-        public ChurrascoController(IMediator mediator)
+        public ChurrascoController(IMediator mediator) 
         {
             _mediator = mediator;
         }
