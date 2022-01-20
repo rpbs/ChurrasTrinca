@@ -14,8 +14,17 @@ namespace Infra.Repositories
     public class ChurrascoRepository : BaseRepository<Churrasco>, IChurrascoRepository
     {
 
+        private readonly ChurrasDbContext _churrasDbContext;
+
         public ChurrascoRepository(ChurrasDbContext dbContext) : base(dbContext)
         {
+            _churrasDbContext = dbContext;
+        }
+
+        public async Task<IReadOnlyList<Churrasco>> ChurrascosAgendados()
+        {
+            IReadOnlyList<Churrasco> churrascos = await _churrasDbContext.Churrascos.Where(x => x.Data >= DateTime.Now).ToListAsync();
+            return churrascos;
         }
     }
 }

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace Core.Queries.Handlers
 {
     public class ParticipanteQueryHandler :
-                IRequestHandler<ParticipanteByChurrascoIdQuery, List<ParticipanteResponse>>
+                IRequestHandler<ParticipanteByChurrascoIdQuery, IReadOnlyList<ParticipanteResponse>>
     {
 
         private readonly IMapper _mapper;
@@ -24,9 +24,11 @@ namespace Core.Queries.Handlers
             _participanteRepository = participanteRepository;
         }
 
-        public Task<List<ParticipanteResponse>> Handle(ParticipanteByChurrascoIdQuery request, CancellationToken cancellationToken)
+        public async Task<IReadOnlyList<ParticipanteResponse>> Handle(ParticipanteByChurrascoIdQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var participantes = await _participanteRepository.ObterParticipantes(request.ChurrascoId);
+            var resposta = _mapper.Map<IReadOnlyList<ParticipanteResponse>>(participantes);
+            return resposta;
         }
     }
 }

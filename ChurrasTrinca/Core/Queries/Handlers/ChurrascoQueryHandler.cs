@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
-using Core.DTO;
 using Core.Interface;
 using Core.Model;
 using MediatR;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -31,9 +29,11 @@ namespace Core.Queries.Handlers
             return respostas;
         }
 
-        public Task<ChurrascoResponse> Handle(ChurrascoByIdQuery request, CancellationToken cancellationToken)
+        public async Task<ChurrascoResponse> Handle(ChurrascoByIdQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var churrasco = await _churrascoRepository.GetById(request.Id);
+            var resposta = _mapper.Map<ChurrascoResponse>(churrasco);
+            return resposta;
         }
     }
 }

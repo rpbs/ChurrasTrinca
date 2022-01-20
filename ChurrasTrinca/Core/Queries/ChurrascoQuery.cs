@@ -10,9 +10,6 @@ namespace Core.Queries
 {
     public class ChurrascoQuery : IRequest<IReadOnlyList<ChurrascoResponse>>
     {
-        public ChurrascoQuery()
-        {
-
-        }
+        
     }
 }

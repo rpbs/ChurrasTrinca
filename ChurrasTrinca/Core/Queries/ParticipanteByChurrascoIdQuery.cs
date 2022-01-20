@@ -8,7 +8,13 @@ using System.Threading.Tasks;
 
 namespace Core.Queries
 {
-    public class ParticipanteByChurrascoIdQuery : IRequest<List<ParticipanteResponse>>
+    public class ParticipanteByChurrascoIdQuery : IRequest<IReadOnlyList<ParticipanteResponse>>
     {
+        public Guid ChurrascoId { get; set; }
+
+        public ParticipanteByChurrascoIdQuery(Guid churrascoId)
+        {
+            ChurrascoId = churrascoId;
+        }
     }
 }
