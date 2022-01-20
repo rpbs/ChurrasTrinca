@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,9 +9,15 @@ using System.Threading.Tasks;
 namespace ChurrasTrinca.Controllers
 {
     [AllowAnonymous]
-    [ApiController]
-    [Route("api/[controller]")]
-    public class ParticipanteController : Controller
+    public class ParticipanteController : BaseController
     {
+        private readonly IMediator _mediator;
+
+        public ParticipanteController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+
+
     }
 }

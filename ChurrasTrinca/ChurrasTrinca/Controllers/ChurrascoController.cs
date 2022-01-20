@@ -11,7 +11,7 @@ namespace ChurrasTrinca.Controllers
 {
     [AllowAnonymous]
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/churrasco")]
     public class ChurrascoController : Controller
     {
         private readonly IMediator _mediator;
@@ -21,15 +21,11 @@ namespace ChurrasTrinca.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetChurrasco(Guid id)
-        {
-            var query = new ChurrascoByIdQuery(id);
-            var response = await _mediator.Send(query);
-
-            return Ok(response);
-        }
-
+        /// <summary>
+        /// Cria um novo churrasco
+        /// </summary>
+        /// <param name="churrascoDTO">Teste</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> CriarChurrasco([FromBody] ChurrascoDTO churrascoDTO)
         {
@@ -38,7 +34,23 @@ namespace ChurrasTrinca.Controllers
 
             return Ok(response);
         }
+        /// <summary>
+        /// Obter um determinado churrasco
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetChurrasco(Guid id)
+        {
+            var query = new ChurrascoByIdQuery(id);
+            var response = await _mediator.Send(query);
 
+            return Ok(response);
+        }
+        /// <summary>
+        /// Retorna todos os churrascos agendados da data atual em diante.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> GetChurrascos()
         {
@@ -48,7 +60,11 @@ namespace ChurrasTrinca.Controllers
             return Ok(response);
 
         }
-
+        /// <summary>
+        /// Lista todos os participantes do churrasco.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}/participantes")]
         public async Task<IActionResult> GetParticipantesChurrasco(Guid id)
         {

@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace Core.Commands.Handlers
 {
-    public class ChurrascoCommandHandler : 
+    public class ChurrascoHandler : 
         IRequestHandler<ChurrascoCommand, ChurrascoResponse>
     {
 
         private readonly IMapper _mapper;
         private readonly IChurrascoRepository _churrascoRepository;
 
-        public ChurrascoCommandHandler(IMapper mapper, IChurrascoRepository churrascoRepository)
+        public ChurrascoHandler (IMapper mapper, IChurrascoRepository churrascoRepository)
         {
             _mapper = mapper;
             _churrascoRepository = churrascoRepository;
