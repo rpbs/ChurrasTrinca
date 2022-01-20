@@ -1,2 +1,14 @@
-# ChurrasTrinca
-Projeto de desafio para empresa Trinca
+# Churras Trinca (agendamento de churrasco da empresa)
+
+Projeto de desafio para empresa ingressar na Trinca
+
+Tecnologias utilizadas:
+
+* .NET Core 5
+* C#
+* EntityFramework Core
+* SQL Server
+* Autofact
+* AutoMapper
+* CQRS
+* Mediator
