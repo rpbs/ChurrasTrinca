@@ -11,4 +11,5 @@ Tecnologias utilizadas:
 * Autofact
 * AutoMapper
 * CQRS
+* SOLID
 * Mediator
