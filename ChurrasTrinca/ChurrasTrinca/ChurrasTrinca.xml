@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ChurrasTrinca</name>
+    </assembly>
+    <members>
+        <member name="M:ChurrasTrinca.Controllers.ChurrascoController.CriarChurrasco(Core.DTO.ChurrascoDTO)">
+            <summary>
+            Cria um novo churrasco
+            </summary>
+            <param name="churrascoDTO">Teste</param>
+            <returns></returns>
+        </member>
+        <member name="M:ChurrasTrinca.Controllers.ChurrascoController.GetChurrasco(System.Guid)">
+            <summary>
+            Obter um determinado churrasco
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ChurrasTrinca.Controllers.ChurrascoController.GetChurrascos">
+            <summary>
+            Retorna todos os churrascos agendados da data atual em diante.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ChurrasTrinca.Controllers.ChurrascoController.GetParticipantesChurrasco(System.Guid)">
+            <summary>
+            Lista todos os participantes do churrasco.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
