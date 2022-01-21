@@ -18,20 +18,30 @@ namespace Core.Commands.Handlers
     {
 
         private readonly IParticipanteRepository _pariticipanteRepository;
+        private readonly IChurrascoRepository _churrascoRepository;
         private readonly IMapper _mapper;
 
-        public ParticipanteHandler(IParticipanteRepository pariticipanteRepository, IMapper mapper)
+        public ParticipanteHandler(IParticipanteRepository pariticipanteRepository, IChurrascoRepository churrascoRepository, IMapper mapper)
         {
             _pariticipanteRepository = pariticipanteRepository;
+            _churrascoRepository = churrascoRepository;
             _mapper = mapper;
         }
 
         public async Task<ParticipanteResponse> Handle(AdicionarParticipanteCommad request, CancellationToken cancellationToken)
         {
-            var participante = _mapper.Map<Participante>(request.ParticipanteDTO);
-            participante = await _pariticipanteRepository.Create(participante);
-            var response = _mapper.Map<ParticipanteResponse>(participante);
-            return response;
+            var churras = await _churrascoRepository.GetById(request.ParticipanteDTO.ChurrascoId);
+            var dto = request.ParticipanteDTO;
+
+            if (dto.ValorContribuicao > 0 && 
+               (dto.ValorContribuicao >= churras?.ValorComBebida || dto.ValorContribuicao >= churras?.ValorSemBebida))
+            {
+                var participante = _mapper.Map<Participante>(request.ParticipanteDTO);
+                participante = await _pariticipanteRepository.Create(participante);
+                var response = _mapper.Map<ParticipanteResponse>(participante);
+                return response;
+            }
+            else throw new ArgumentException("Valor de contribuição não atende as demandas do churrasco!");
         }
 
         public async Task<object> Handle(RemoverParticipanteCommand request, CancellationToken cancellationToken)

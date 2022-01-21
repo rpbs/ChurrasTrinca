@@ -1,4 +1,6 @@
-﻿using Core.Entities;
+﻿using AutoMapper;
+using Core.DTO;
+using Core.Entities;
 using Core.Interface;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,12 +13,12 @@ namespace Infra.Repositories
 {
     public class ParticipanteRepository : BaseRepository<Participante>, IParticipanteRepository
     {
-        private readonly ChurrasDbContext _churrasDbContext;
-
+        private readonly ChurrasDbContext _churrasDbContext;        
         public ParticipanteRepository(ChurrasDbContext churrasDbContext) : base(churrasDbContext)
         {
             _churrasDbContext = churrasDbContext;
         }
+
 
         public async Task<IReadOnlyCollection<Participante>> ObterParticipantes(Guid churrascoId)
         {

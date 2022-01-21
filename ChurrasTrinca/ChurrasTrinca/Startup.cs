@@ -68,6 +68,7 @@ namespace ChurrasTrinca
             //services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
 
             services.AddScoped<IChurrascoRepository, ChurrascoRepository>();
+            services.AddScoped<IParticipanteRepository, ParticipanteRepository>();
 
             var builder = new ContainerBuilder();
 

@@ -9,8 +9,7 @@ namespace Core.DTO
     public class ParticipanteDTO
     {
         public string Nome { get; set; }
-        public decimal? ValorComBebida { get; set; }
-        public decimal? ValorSemBebida { get; set; }
+        public decimal ValorContribuicao { get; set; }
         public Guid ChurrascoId { get; set; }
 
     }

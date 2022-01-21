@@ -12,6 +12,9 @@ namespace Core.Model
         public string Observacoes { get; set; }
         public int QuantidadePessoas { get; set; }
         public decimal ValorTotal { get; set; }
+        public decimal ValorComBebida { get; set; }
+        public decimal ValorSemBebida { get; set; }
+
 
     }
 }

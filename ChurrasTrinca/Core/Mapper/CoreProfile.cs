@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.DTO;
 using Core.Entities;
 using Core.Model;
 using System;
@@ -14,9 +15,11 @@ namespace Core.Mapper
         public CoreProfile()
         {
             // falta adicionar no startup
+            CreateMap<ParticipanteDTO, Participante>();
             CreateMap<Participante, ParticipanteResponse>();
             CreateMap<Churrasco, ChurrascoResponse>()
-                .ForMember(x => x.QuantidadePessoas, opt => opt.MapFrom(x => x.Participantes.Count));
+                .ForMember(x => x.QuantidadePessoas, opt => opt.MapFrom(x => x.Participantes.Count))
+                .ForMember(x => x.ValorTotal, opt => opt.MapFrom(x => x.Participantes.Sum(x => x.ValorContribuicao)));
         }
     }
 }

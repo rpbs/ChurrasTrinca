@@ -11,7 +11,7 @@ namespace Core.Interface
     public interface IParticipanteRepository : IBaseRepository<Participante>
     {
         Task<IReadOnlyCollection<Participante>> ObterParticipantes(Guid churrascoId);
-        Task<Participante> ObterPorChurrascoIdAndParticipanteId(Guid churrascoId, Guid participanteId);
+        Task<Participante> ObterPorChurrascoIdAndParticipanteId(Guid churrascoId, Guid participanteId);      
 
     }
 }
