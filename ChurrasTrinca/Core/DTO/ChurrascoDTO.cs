@@ -9,10 +9,10 @@ namespace Core.DTO
     public class ChurrascoDTO
     {
         public string Descricao { get; set; }
-        public string Observacao { get; set; }
+        public string Observacoes { get; set; }
         public DateTime Data { get; set; }
-        public decimal ValorComBebiba { get; set; }
-        public decimal ValorSemBebiba { get; set; }
+        public decimal ValorComBebida { get; set; }
+        public decimal ValorSemBebida { get; set; }
 
     }
 }

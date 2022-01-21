@@ -10,15 +10,18 @@ namespace Core.Queries.Handlers
 {
     public class ChurrascoQueryHandler : 
         IRequestHandler<ChurrascoByIdQuery, ChurrascoResponse>,
-        IRequestHandler<ChurrascoQuery, IReadOnlyList<ChurrascoResponse>>        
+        IRequestHandler<ChurrascoQuery, IReadOnlyList<ChurrascoResponse>>,
+        IRequestHandler<ChurrascoParticipantesByIdQuery, IReadOnlyList<ParticipanteResponse>>
     {
 
         private readonly IChurrascoRepository _churrascoRepository;
+        private readonly IParticipanteRepository _participanteRepository;
         private readonly IMapper _mapper;
 
-        public ChurrascoQueryHandler(IChurrascoRepository churrascoRepository, IMapper mapper)
+        public ChurrascoQueryHandler(IChurrascoRepository churrascoRepository, IParticipanteRepository participanteRepository, IMapper mapper)
         {
             _churrascoRepository = churrascoRepository;
+            _participanteRepository = participanteRepository;
             _mapper = mapper;
         }
 
@@ -33,6 +36,13 @@ namespace Core.Queries.Handlers
         {
             var churrasco = await _churrascoRepository.GetById(request.Id);
             var resposta = _mapper.Map<ChurrascoResponse>(churrasco);
+            return resposta;
+        }
+
+        public async Task<IReadOnlyList<ParticipanteResponse>> Handle(ChurrascoParticipantesByIdQuery request, CancellationToken cancellationToken)
+        {
+            var churrasco = await _participanteRepository.ObterParticipantes(request.Id);
+            var resposta = _mapper.Map<IReadOnlyList<ParticipanteResponse>>(churrasco);
             return resposta;
         }
     }

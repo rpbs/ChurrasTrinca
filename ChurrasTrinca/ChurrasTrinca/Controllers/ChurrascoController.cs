@@ -1,5 +1,6 @@
 ﻿using Core.Commands;
 using Core.DTO;
+using Core.Model;
 using Core.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -29,10 +30,17 @@ namespace ChurrasTrinca.Controllers
         [HttpPost]
         public async Task<IActionResult> CriarChurrasco([FromBody] ChurrascoDTO churrascoDTO)
         {
-            var query = new ChurrascoCommand(churrascoDTO);
-            var response = await _mediator.Send(query);
+            try
+            {
+                var query = new ChurrascoCommand(churrascoDTO);
+                var response = await _mediator.Send(query);
 
-            return Ok(response);
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new BaseResponse(e.Message, false));
+            }
         }
         /// <summary>
         /// Obter um determinado churrasco

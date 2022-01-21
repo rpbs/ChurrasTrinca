@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Core.Queries
 {
-    public class ChurrascoParticipantesByIdQuery : IRequest<List<ParticipanteResponse>>
+    public class ChurrascoParticipantesByIdQuery : IRequest<IReadOnlyList<ParticipanteResponse>>
     {
         public ChurrascoParticipantesByIdQuery(Guid id)
         {

@@ -26,19 +26,27 @@ namespace ChurrasTrinca.Controllers
         [HttpPost]
         public async Task<IActionResult> AdicionarParticipante([FromBody] ParticipanteDTO participanteDTO)
         {
-            var query = new AdicionarParticipanteCommad(participanteDTO);
-            var response = await _mediator.Send(query);
+            try
+            {
+                var query = new AdicionarParticipanteCommad(participanteDTO);
+                var response = await _mediator.Send(query);
 
-            return Ok(response);
+                return Ok(response);
+
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new BaseResponse(e.Message, false));
+            }        
         }
 
         [HttpDelete]
         public async Task<IActionResult> RemoverParticipante([FromBody] RemoverParticipanteDTO removerParticipanteDTO)
         {
             var query = new RemoverParticipanteCommand(removerParticipanteDTO);
-            var response = await _mediator.Send(query);
+            await _mediator.Send(query);
 
-            return Ok(response);
+            return Ok();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Core.Model
     public class ParticipanteResponse
     {
         public string Nome { get; set; }
-        public decimal Contribuicao { get; set; }
+        public decimal ValorContribuicao { get; set; }
 
     }
 }
