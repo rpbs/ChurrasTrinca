@@ -11,18 +11,16 @@ namespace Core.Entities
         {
         }
 
-        public Participante(Guid churrascoId, string nome, decimal? valorComBebida, decimal? valorSemBebida) 
+        public Participante(Guid churrascoId, string nome, decimal valorContribuicao)
         {
             ChurrascoId = churrascoId;
             Nome = nome;
-            ValorComBebida = valorComBebida;
-            ValorSemBebida = valorSemBebida;
+            ValorContribuicao = valorContribuicao;
         }
 
         public Guid ChurrascoId { get; set; }
         public string Nome { get; set; }
-        public decimal? ValorComBebida { get; set; }
-        public decimal? ValorSemBebida { get; set; }
+        public decimal ValorContribuicao { get; set; }
         public virtual Churrasco Churrasco { get; set; }
     }
 }

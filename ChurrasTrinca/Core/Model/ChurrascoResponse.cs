@@ -9,7 +9,7 @@ namespace Core.Model
     public class ChurrascoResponse
     {
         public string Descricao { get; set; }
-        public string Observacao { get; set; }
+        public string Observacoes { get; set; }
         public int QuantidadePessoas { get; set; }
         public decimal ValorTotal { get; set; }
 

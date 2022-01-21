@@ -16,6 +16,9 @@ namespace Core.Entities
 
         public string Descricao { get; set; }
         public string Observacoes { get; set; }
+        public decimal? ValorComBebida { get; set; }
+        public decimal? ValorSemBebida { get; set; }
+
         public virtual ICollection<Participante> Participantes { get; set; }
     }
 }

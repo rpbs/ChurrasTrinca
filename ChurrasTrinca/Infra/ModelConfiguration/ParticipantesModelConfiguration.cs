@@ -17,9 +17,7 @@ namespace Infra.ModelConfiguration
                 .HasMaxLength(50)
                 .IsUnicode(false);
 
-            entity.Property(e => e.ValorComBebida).HasColumnType("decimal(18, 0)");
-
-            entity.Property(e => e.ValorSemBebida).HasColumnType("decimal(18, 0)");
+            entity.Property(e => e.ValorContribuicao).HasColumnType("decimal(18, 0)");
 
             entity.HasOne(d => d.Churrasco)
                 .WithMany(p => p.Participantes)

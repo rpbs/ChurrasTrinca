@@ -22,6 +22,10 @@ namespace Infra.ModelConfiguration
             entity.Property(e => e.Observacoes)
                 .HasMaxLength(500)
                 .IsUnicode(false);
+
+            entity.Property(e => e.ValorComBebida).HasColumnType("decimal(18, 0)");
+
+            entity.Property(e => e.ValorSemBebida).HasColumnType("decimal(18, 0)");
         }
     }
 }

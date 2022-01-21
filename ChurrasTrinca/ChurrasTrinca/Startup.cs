@@ -1,19 +1,25 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using AutoMapper;
+using Core.Commands;
+using Core.Interface;
+using Core.Mapper;
+using Core.Model;
+using Core.Queries;
+using Infra;
+using Infra.Repositories;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace ChurrasTrinca
 {
@@ -27,7 +33,7 @@ namespace ChurrasTrinca
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
 
             services.AddControllers();
@@ -38,6 +44,40 @@ namespace ChurrasTrinca
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
+
+            services.AddDbContext<ChurrasDbContext>(options =>
+                        options.UseSqlServer("Server=localhost;Initial Catalog=ChurrasTrinca;Persist Security Info=True;User ID=sa;Password=Sample123$;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;"),
+                        ServiceLifetime.Scoped);
+
+            var autoMapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new CoreProfile());
+            });
+
+            var mapper = autoMapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
+            var assembly = Assembly.GetExecutingAssembly();
+
+            services.AddAutoMapper(assembly);
+            
+            services.AddMediatR(typeof(ChurrascoCommand).GetTypeInfo().Assembly);
+
+            //services.AddMediatR(Assembly.GetExecutingAssembly());
+
+            //services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
+
+            services.AddScoped<IChurrascoRepository, ChurrascoRepository>();
+
+            var builder = new ContainerBuilder();
+
+            builder.Populate(services);
+
+            var webAssembly = Assembly.GetExecutingAssembly();
+
+            var container = builder.Build();
+
+            return new AutofacServiceProvider(container);
 
         }
 
