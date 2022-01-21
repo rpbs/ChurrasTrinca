@@ -15,7 +15,8 @@ namespace Core.Mapper
         {
             // falta adicionar no startup
             CreateMap<Participante, ParticipanteResponse>();
-            CreateMap<Churrasco, ChurrascoResponse>();
+            CreateMap<Churrasco, ChurrascoResponse>()
+                .ForMember(x => x.QuantidadePessoas, opt => opt.MapFrom(x => x.Participantes.Count));
         }
     }
 }

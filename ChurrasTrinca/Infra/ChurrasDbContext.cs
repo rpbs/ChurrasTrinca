@@ -15,6 +15,13 @@ namespace Infra
         {
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+ 
+            optionsBuilder.UseLazyLoadingProxies();
+            base.OnConfiguring(optionsBuilder);
+        }
+
         public virtual DbSet<Churrasco> Churrascos { get; set; }
         public virtual DbSet<Participante> Participantes { get; set; }
 
