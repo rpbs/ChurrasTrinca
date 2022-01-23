@@ -8,8 +8,8 @@ namespace Core.Model
 {
     public class ParticipanteResponse
     {
+        public Guid Id { get; set; }
         public string Nome { get; set; }
         public decimal ValorContribuicao { get; set; }
-
     }
 }

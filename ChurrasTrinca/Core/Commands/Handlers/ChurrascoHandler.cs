@@ -16,6 +16,8 @@ namespace Core.Commands.Handlers
         private readonly IMapper _mapper;
         private readonly IChurrascoRepository _churrascoRepository;
 
+
+
         public ChurrascoHandler (IMapper mapper, IChurrascoRepository churrascoRepository)
         {
             _mapper = mapper;
@@ -28,7 +30,7 @@ namespace Core.Commands.Handlers
 
             if (churrascoDTO.ValorComBebida <= 0 || churrascoDTO.ValorSemBebida <= 0)
             {                
-                throw new ArgumentException("Valor de contribuição inválido ");
+                throw new ArgumentException("Valor de contribuição inválido");
             }
             if (churrascoDTO.Data < DateTime.Now)
             {

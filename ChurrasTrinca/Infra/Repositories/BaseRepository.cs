@@ -13,6 +13,11 @@ namespace Infra.Repositories
 
         private readonly ChurrasDbContext _dbContext;
 
+        public BaseRepository()
+        {
+
+        }
+
         public BaseRepository(ChurrasDbContext dbContext)
         {
             _dbContext = dbContext;

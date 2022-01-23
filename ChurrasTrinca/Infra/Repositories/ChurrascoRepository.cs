@@ -21,6 +21,11 @@ namespace Infra.Repositories
             _churrasDbContext = dbContext;
         }
 
+        public ChurrascoRepository()
+        {
+
+        }
+
         public async Task<IReadOnlyList<Churrasco>> ChurrascosAgendados()
         {
             IReadOnlyList<Churrasco> churrascos = await _churrasDbContext.Churrascos.Where(x => x.Data >= DateTime.Now).ToListAsync();

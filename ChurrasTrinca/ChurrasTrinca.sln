@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChurrasTrinca", "ChurrasTrinca\ChurrasTrinca.csproj", "{A30B1EA9-05F3-4B13-899A-7CB4DD237142}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChurrasTrinca", "ChurrasTrinca\ChurrasTrinca.csproj", "{A30B1EA9-05F3-4B13-899A-7CB4DD237142}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{1F6B99B3-071E-4931-B958-4E8721036759}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{1F6B99B3-071E-4931-B958-4E8721036759}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra", "Infra\Infra.csproj", "{E716D240-2D3F-4560-A4FC-936BEED90395}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra", "Infra\Infra.csproj", "{E716D240-2D3F-4560-A4FC-936BEED90395}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{903A6E94-3CC7-4D9D-BEAD-C9AD029DAFCC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestsChurras", "TestsChurras\TestsChurras.csproj", "{1279B52B-BD85-4076-9121-DB70B2120B03}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E716D240-2D3F-4560-A4FC-936BEED90395} = {E716D240-2D3F-4560-A4FC-936BEED90395}
+		{1F6B99B3-071E-4931-B958-4E8721036759} = {1F6B99B3-071E-4931-B958-4E8721036759}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +33,10 @@ Global
 		{E716D240-2D3F-4560-A4FC-936BEED90395}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E716D240-2D3F-4560-A4FC-936BEED90395}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E716D240-2D3F-4560-A4FC-936BEED90395}.Release|Any CPU.Build.0 = Release|Any CPU
-		{903A6E94-3CC7-4D9D-BEAD-C9AD029DAFCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{903A6E94-3CC7-4D9D-BEAD-C9AD029DAFCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{903A6E94-3CC7-4D9D-BEAD-C9AD029DAFCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{903A6E94-3CC7-4D9D-BEAD-C9AD029DAFCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1279B52B-BD85-4076-9121-DB70B2120B03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1279B52B-BD85-4076-9121-DB70B2120B03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1279B52B-BD85-4076-9121-DB70B2120B03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1279B52B-BD85-4076-9121-DB70B2120B03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

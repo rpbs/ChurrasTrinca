@@ -15,6 +15,11 @@ namespace Infra
         {
         }
 
+        public ChurrasDbContext()
+        {
+
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
  
