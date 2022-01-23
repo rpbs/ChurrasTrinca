@@ -13,6 +13,8 @@ Tecnologias utilizadas:
 * CQRS
 * SOLID
 * Mediator
+* Xunit
+* Moq
 
 Padrão de projeto - Mediator - CRQS
 
