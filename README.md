@@ -13,3 +13,11 @@ Tecnologias utilizadas:
 * CQRS
 * SOLID
 * Mediator
+
+Padrães de projeto - Mediator - CRQS
+
+Arquitetura da solução
+* ChurrasTrinca - Projeto web, contêm controllers
+* Core - Contêm toda regra de negócio, entidades, responses, mappers, queries, commands.
+* Infra - Configuração do dbContext e mapeamento de entidades/banco
+* TestChurras - Projeto teste usando moq e xnuit
