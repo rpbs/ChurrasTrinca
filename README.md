@@ -14,7 +14,7 @@ Tecnologias utilizadas:
 * SOLID
 * Mediator
 
-Padrães de projeto - Mediator - CRQS
+Padrão de projeto - Mediator - CRQS
 
 Arquitetura da solução
 * ChurrasTrinca - Projeto web, contêm controllers
