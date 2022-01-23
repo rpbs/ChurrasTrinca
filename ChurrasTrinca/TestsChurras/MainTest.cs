@@ -60,7 +60,6 @@ namespace TestsChurras
         {
             var dbContextMock = new Mock<ChurrasDbContext>();
             var dbSetMock = new Mock<DbSet<Churrasco>>();
-            var repo = new Mock<IChurrascoRepository>();
             var churrasco = new Churrasco()
             {
                 Descricao = "Descrição",
@@ -69,31 +68,15 @@ namespace TestsChurras
                 ValorSemBebida = 50
             };
 
-            repo.Setup(x => x.Create(churrasco)).ReturnsAsync(churrasco);
-
+            dbSetMock.Setup(s => s.FindAsync(It.IsAny<Guid>())).Returns(new ValueTask<Churrasco>(churrasco));
             dbContextMock.Setup(s => s.Set<Churrasco>()).Returns(dbSetMock.Object);
 
             var churrasRepo = new ChurrascoRepository(dbContextMock.Object);
-            var churrascNovo = churrasRepo.Create(churrasco).Result;
+            var churrascNovo = await churrasRepo.Create(churrasco);
 
-            var handler = new ChurrascoHandler(_mapper, repo.Object);
-
-            var churrascoDTO = new ChurrascoDTO
-            {
-                Data = DateTime.Now.AddDays(5),
-                Descricao = "Descrição",
-                Observacoes = "Obs",
-                ValorComBebida = 100,
-                ValorSemBebida = 50
-            };
-
-            var cmd = new ChurrascoCommand(churrascoDTO);
-
-            var resultado = await handler.Handle(cmd, CancellationToken.None);
-
-            Assert.NotNull(resultado);
-            Assert.Equal(resultado.ValorComBebida, churrascoDTO.ValorComBebida);
-            Assert.Equal(resultado.ValorSemBebida, churrascoDTO.ValorSemBebida);
+            Assert.NotNull(churrascNovo);
+            Assert.Equal(churrascNovo.ValorComBebida, churrasco.ValorComBebida);
+            Assert.Equal(churrascNovo.ValorSemBebida, churrasco.ValorSemBebida);
         }
 
         [Fact]
