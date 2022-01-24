@@ -10,6 +10,8 @@ using Infra.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
@@ -139,6 +141,33 @@ namespace TestsChurras
                 Assert.Equal("Data do churrasco tem que ser no futuro!", e.Message);
                 Assert.IsType<ArgumentException>(e);
             }
+        }
+
+        [Fact]
+        public async Task DeveTrazerAgendados()
+        {
+            var churrasco = new Churrasco()
+            {
+                Descricao = "Descrição",
+                Observacoes = "Observações",
+                ValorComBebida = 100,
+                ValorSemBebida = 50,
+                Data = DateTime.Now.AddDays(5)
+            };
+
+            var data = new List<Churrasco>
+            {
+                churrasco
+            };
+
+            var mockContext1 = new Mock<IChurrascoRepository>();
+            mockContext1.Setup(x => x.ChurrascosAgendados()).ReturnsAsync(data);
+
+            var resultado = await mockContext1.Object.ChurrascosAgendados();
+
+            Assert.NotNull(resultado);
+            Assert.Single(resultado);
+            
         }
     }
 }
