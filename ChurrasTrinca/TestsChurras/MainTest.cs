@@ -160,14 +160,35 @@ namespace TestsChurras
                 churrasco
             };
 
-            var mockContext1 = new Mock<IChurrascoRepository>();
-            mockContext1.Setup(x => x.ChurrascosAgendados()).ReturnsAsync(data);
+            var mockRepo = new Mock<IChurrascoRepository>();
+            mockRepo.Setup(x => x.ChurrascosAgendados()).ReturnsAsync(data);
 
-            var resultado = await mockContext1.Object.ChurrascosAgendados();
+            var resultado = await mockRepo.Object.ChurrascosAgendados();
 
             Assert.NotNull(resultado);
             Assert.Single(resultado);
             
+        }
+
+        [Fact]
+        public async Task NaoDeveTrazerAgendados()
+        {
+            var churrasco = new Churrasco()
+            {
+                Descricao = "Descrição",
+                Observacoes = "Observações",
+                ValorComBebida = 100,
+                ValorSemBebida = 50,
+                Data = DateTime.Now.AddDays(-1)
+            };
+
+            var mockRepo = new Mock<IChurrascoRepository>();
+            mockRepo.Setup(x => x.Create(churrasco)).ReturnsAsync(churrasco);
+
+            var churrascNovo = await mockRepo.Object.Create(churrasco);
+            var resultado = await mockRepo.Object.ChurrascosAgendados();
+
+            Assert.Null(resultado);            
         }
     }
 }
